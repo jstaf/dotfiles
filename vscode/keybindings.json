@@ -1,0 +1,7 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+{"key": "ctrl+enter",   "command":  "macros.terminal_execute", "when": "editorTextFocus"},
+{"key": "ctrl+enter",   "command":  "workbench.action.terminal.runSelectedText", "when": "editorTextFocus && editorHasSelection"},
+//{"key": "ctrl+enter",   "command": "macros.jupyter_execute", "when": "editorTextFocus"},
+{"key": "ctrl+`",       "command":  "workbench.action.terminal.toggleTerminal"}                        
+]
