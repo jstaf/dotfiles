@@ -8,10 +8,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug '~/config/chapel-highlight/vim'
 Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
-"Plug 'julienr/vim-cellmode'
 Plug 'jpalardy/vim-slime'
 call plug#end()
 
