@@ -4,7 +4,7 @@
 # do not prompt for R install mirror
 local({
   r <- getOption("repos")
-  r["CRAN"] <- "https://cran.stat.sfu.ca/"
+  r["CRAN"] <- "https://cran.rstudio.com/"
   options(repos = r)
 })
 
