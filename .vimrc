@@ -1,27 +1,30 @@
 " basic config
 set number
+set expandtab
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
+syntax on
 
 " vim plug plugins section
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'davidhalter/jedi-vim' " python autocomplete
+" Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
 Plug 'jpalardy/vim-slime'
 call plug#end()
 
 " colorscheme configs
 set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_italic=0
+let g:gruvbox_contrast_dark='medium'
 colorscheme gruvbox
 
-" enable airline
+" enable airline, with server compatibility fixes
 set laststatus=2
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " enable snakemake syntax highlighting
 au BufNewFile,BufRead Snakefile set syntax=snakemake
@@ -35,5 +38,5 @@ autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 smarttab softt
 " vim-slime config
 let g:slime_target = 'tmux'
 
-
-
+" if you forget to open a file with sudo, use w!!
+cmap w!! w !sudo tee % > /dev/null
