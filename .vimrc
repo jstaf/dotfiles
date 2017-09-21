@@ -2,6 +2,9 @@
 set number
 set shiftwidth=4
 set tabstop=4
+set softtabstop=0
+set expandtab
+set smarttab
 
 " vim plug plugins section
 call plug#begin('~/.vim/plugged')
@@ -37,3 +40,15 @@ let g:slime_target = 'tmux'
 
 " if you forget to open a file with sudo, use w!!
 cmap w!! w !sudo tee % > /dev/null
+
+" fortran options
+let fortran_free_source=1
+let fortran_more_precise=1
+let fortran_do_enddo=1
+
+" makefiles will use tabs
+autocmd FileType make set noexpandtab
+
+" youcompleteme config
+let g:ycm_show_diagnostics_ui=1
+
