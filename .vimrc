@@ -1,10 +1,7 @@
 " basic config
 set number
-set expandtab
 set shiftwidth=4
 set tabstop=4
-set softtabstop=4
-syntax on
 
 " vim plug plugins section
 call plug#begin('~/.vim/plugged')
