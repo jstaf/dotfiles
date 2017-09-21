@@ -28,3 +28,9 @@ fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+# use rice console if available
+if [ -x "$(command -v rice)" ]; then
+	alias R='rice'
+fi
+
