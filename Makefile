@@ -1,6 +1,6 @@
 .PHONY = install
 
-install:
+install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
 	cp .Rprofile ~
 	mkdir -p ~/.config/Code/User
@@ -10,4 +10,7 @@ install:
 # https://github.com/randy3k/rice
 rice:
 	pip3 install --user rice
+
+~/.vim/autoload/plug.vim:
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
