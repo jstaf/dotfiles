@@ -5,6 +5,8 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# do not use swapfiles to avoid stalling if a network filesystem is unresponsive
+alias vim='vim -n'
 alias ssh='ssh -X'
 
 # yellow-red centos ps1
