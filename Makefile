@@ -5,6 +5,7 @@ install: ~/.vim/autoload/plug.vim
 	cp .Rprofile ~
 	mkdir -p ~/.config/Code/User
 	cp vscode/*.json ~/.config/Code/User
+	vim +PlugInstall +qall!
 
 # install the rice r console
 # https://github.com/randy3k/rice
