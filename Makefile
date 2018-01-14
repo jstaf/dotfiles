@@ -3,6 +3,8 @@
 install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
 	cp .Rprofile ~
+	mkdir -p ~/.config/tilix/schemes
+	cp gruvbox.json ~/.config/tilix/schemes
 	mkdir -p ~/.config/Code/User
 	cp vscode/*.json ~/.config/Code/User
 	vim +PlugInstall +qall!
