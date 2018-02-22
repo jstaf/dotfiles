@@ -18,6 +18,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 " Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimshell'
 call plug#end()
 
 " colorscheme configs
