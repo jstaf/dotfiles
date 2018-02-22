@@ -8,7 +8,7 @@ set smarttab
 
 " enable mouse support
 " omg omg omg where has this been all my life!
-set mouse=a
+"set mouse=a
 
 " vim plug plugins section
 call plug#begin('~/.vim/plugged')
@@ -16,7 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-" Plug 'davidhalter/jedi-vim' " python autocomplete
+Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
 call plug#end()
 
@@ -57,4 +57,7 @@ let fortran_do_enddo=1
 
 " youcompleteme config
 let g:ycm_show_diagnostics_ui=1
+
+" jedi vim doc window is now at bottom instead of top
+set splitbelow
 
