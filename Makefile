@@ -1,11 +1,14 @@
-.PHONY = install
+.PHONY = install, rice
 
 install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
 	cp .Rprofile ~
 	vim +PlugInstall +qall!
+	mkdir -p ~/.config/tilix/schemes
+	cp gruvbox.json ~/.config/tilix/schemes
 	mkdir -p ~/.config/Code/User
 	cp vscode/*.json ~/.config/Code/User
+
 
 
 # install the rice r console
