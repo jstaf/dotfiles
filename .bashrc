@@ -10,7 +10,7 @@ alias vim='vim -n'
 alias ssh='ssh -X'
 
 # yellow-red centos ps1
-export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]]$ '
+export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]]\$ '
 
 # system-specific initialization
 export TERM=xterm-256color
@@ -35,6 +35,9 @@ fi
 if [ -x "$(command -v rice)" ]; then
 	alias R='rice'
 fi
+
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
 
 # load system-specific aliases
 if [[ -r ~/.bash_site ]]; then
