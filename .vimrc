@@ -29,7 +29,6 @@ colorscheme gruvbox
 " enable airline, with server compatibility fixes
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
 
 " gitgutter config
 let g:gitgutter_override_sign_column_highlight = 0
