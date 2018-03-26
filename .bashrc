@@ -8,6 +8,7 @@ fi
 # do not use swapfiles to avoid stalling if a network filesystem is unresponsive
 alias vim='vim -n'
 alias ssh='ssh -X'
+alias ll='ls -l'
 
 # yellow-red centos ps1
 export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]]\$ '
@@ -16,10 +17,10 @@ export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]]\$ '
 export TERM=xterm-256color
 if [ $(uname -a | grep -c "Linux") == 1 ]; then
 	eval `dircolors`
+    alias ls='ls --color=auto'
 else
 	# screams internally
 	alias ls='gls --color=auto'
-	alias ll='ls -l'
 	alias vi='vim'
 	alias wget='wget --no-check-certificate'
 	export EDITOR=vim
@@ -35,9 +36,6 @@ fi
 if [ -x "$(command -v rice)" ]; then
 	alias R='rice'
 fi
-
-alias ll='ls -l --color=auto'
-alias ls='ls --color=auto'
 
 # load system-specific aliases
 if [[ -r ~/.bash_site ]]; then
