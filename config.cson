@@ -1,0 +1,50 @@
+"*":
+  "atom-ide-ui":
+    use: {}
+  core:
+    closeDeletedFileTabs: true
+    disabledPackages: [
+      "language-gfm"
+    ]
+    projectHome: "/home/jstaf/Documents/project"
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "gruvbox-plus-syntax"
+    ]
+  editor:
+    fontFamily: "Fira Mono"
+    fontSize: 16
+  "exception-reporting":
+    userId: "be264c27-d8a0-4aed-bd5c-3a661396a218"
+  "git-diff":
+    showIconsInEditorGutter: true
+  "platformio-ide-terminal":
+    ansiColors:
+      normal:
+        black: "#282828"
+        blue: "#458588"
+        cyan: "#689d6a"
+        green: "#98971a"
+        magenta: "#b16286"
+        red: "#cc241d"
+        white: "#ebdbb2"
+        yellow: "#d79921"
+      zBright:
+        brightBlack: "#928374"
+        brightBlue: "#83a598"
+        brightCyan: "#8ec07c"
+        brightGreen: "#b8bb26"
+        brightMagenta: "#d3869b"
+        brightRed: "#fb4934"
+        brightWhite: "#fbf1c7"
+        brightYellow: "#fabd2f"
+    style:
+      animationSpeed: 0
+      fontFamily: "Fira Mono"
+      fontSize: "16"
+      theme: "gruvbox"
+    toggles:
+      autoClose: true
+  welcome:
+    showOnStartup: false
