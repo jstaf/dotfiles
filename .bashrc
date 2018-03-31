@@ -12,9 +12,10 @@ alias ll='ls -l'
 
 # yellow-red centos ps1
 export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]]\$ '
+export EDITOR=vim
+export TERM=xterm-256color
 
 # system-specific initialization
-export TERM=xterm-256color
 if [ $(uname -a | grep -c "Linux") == 1 ]; then
 	eval `dircolors`
     alias ls='ls --color=auto'
@@ -23,7 +24,6 @@ else
 	alias ls='gls --color=auto'
 	alias vi='vim'
 	alias wget='wget --no-check-certificate'
-	export EDITOR=vim
 	export PS1='[\u@\h \W]\$ '
 fi
 
