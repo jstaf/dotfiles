@@ -1,31 +1,19 @@
-.PHONY = install, rice
+.PHONY = install, desktop
 
 install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
 	cp .Rprofile ~
 	vim +PlugInstall +qall!
+	git config --global color.ui auto
 
+
+# some desktop-focused configs
+desktop:
 	mkdir -p ~/.config/tilix/schemes
 	cp gruvbox.json ~/.config/tilix/schemes
 	
-	mkdir -p ~/.config/Code/User
-	cp vscode/*.json ~/.config/Code/User
-
 	mkdir -p ~/.atom
 	cp config.cson ~/.atom
-
-
-
-# install the rice r console
-# https://github.com/randy3k/rice
-rice:
-	pip3 install --user rice
-
-
-# fonts for airline on desktop clients
-powerline_fonts:
-	git clone https://github.com/powerline/fonts.git
-	fonts/install.sh
 
 
 # install Vim-Plug
