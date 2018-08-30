@@ -5,6 +5,7 @@ install: ~/.vim/autoload/plug.vim
 	cp .Rprofile ~
 	vim +PlugInstall +qall!
 	git config --global color.ui auto
+	git config --global push.default simple
 
 
 # some desktop-focused configs
