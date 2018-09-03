@@ -46,6 +46,9 @@ autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 smarttab softt
 " makefiles will use tabs
 autocmd FileType make set noexpandtab
 
+" yaml formatting
+autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab indentkeys-=<:>
+
 " if you forget to open a file with sudo, use w!!
 cmap w!! w !sudo tee % > /dev/null
 
