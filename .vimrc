@@ -18,6 +18,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
+Plug 'puppetlabs/puppet-syntax-vim'
 call plug#end()
 
 " colorscheme configs
