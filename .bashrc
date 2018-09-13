@@ -25,8 +25,6 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-    export PATH=$PATH:~/Library/Python/3.7/bin
-    export PATH=$PATH:~/Library/Python/3.4/bin
 else
     # screams internally
     alias ls='gls --color=auto'
