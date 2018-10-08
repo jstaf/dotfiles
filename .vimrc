@@ -7,9 +7,7 @@ set expandtab
 set smarttab
 set splitbelow
 set splitright
-
-" enable mouse support
-"set mouse=a
+set mouse=a
 
 """""""""""""""""""""""""""""""""""""""
 " vim plug plugins
@@ -49,7 +47,4 @@ autocmd FileType make set noexpandtab
 
 " yaml formatting
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab indentkeys-=<:>
-
-" youcompleteme config
-let g:ycm_show_diagnostics_ui=1
 
