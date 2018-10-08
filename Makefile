@@ -11,10 +11,10 @@ install: ~/.vim/autoload/plug.vim
 # some desktop-focused configs
 desktop:
 	mkdir -p ~/.config/tilix/schemes
-	cp gruvbox.json ~/.config/tilix/schemes
+	cp tilix/* ~/.config/tilix/schemes
 	
 	mkdir -p ~/.atom
-	cp config.cson ~/.atom
+	cp atom/*.cson ~/.atom
 
 
 # install Vim-Plug

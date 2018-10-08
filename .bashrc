@@ -20,7 +20,7 @@ if [[ $(uname -a) =~ "Linux" ]]; then
     # linux
     eval `dircolors`
     alias ls='ls --color=auto'
-    export PATH=$PATH:~/.local/bin
+    export PATH=$PATH:~/.local/bin:~/bin
 elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1

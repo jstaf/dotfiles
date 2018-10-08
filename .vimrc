@@ -5,12 +5,14 @@ set tabstop=4
 set softtabstop=0
 set expandtab
 set smarttab
+set splitbelow
+set splitright
 
 " enable mouse support
-" omg omg omg where has this been all my life!
 "set mouse=a
 
-" vim plug plugins section
+"""""""""""""""""""""""""""""""""""""""
+" vim plug plugins
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
@@ -35,11 +37,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:gitgutter_override_sign_column_highlight = 0
 " highlight SignColumn ctermbg=none
 
+"""""""""""""""""""""""""""""""""""""""""""""
 " enable snakemake syntax highlighting
 au BufNewFile,BufRead Snakefile set syntax=snakemake
-au BufNewFile,BufRead *.rules set syntax=snakemake
-au BufNewFile,BufRead *.snakefile set syntax=snakemake
-au BufNewFile,BufRead *.snake set syntax=snakemake
 
 " Python-only spaces to tabs
 autocmd FileType python setlocal expandtab tabstop=4 shiftwidth=4 smarttab softtabstop=0
@@ -50,17 +50,6 @@ autocmd FileType make set noexpandtab
 " yaml formatting
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab indentkeys-=<:>
 
-" if you forget to open a file with sudo, use w!!
-cmap w!! w !sudo tee % > /dev/null
-
-" fortran options
-let fortran_free_source=1
-let fortran_more_precise=1
-let fortran_do_enddo=1
-
 " youcompleteme config
 let g:ycm_show_diagnostics_ui=1
-
-" jedi vim doc window is now at bottom instead of top
-set splitbelow
 
