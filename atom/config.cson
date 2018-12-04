@@ -1,12 +1,26 @@
 "*":
   "atom-ide-ui":
+    "atom-ide-outline-view": {}
     use: {}
+  build:
+    statusBarPriority: -1
   core:
+    autoHideMenuBar: true
     closeDeletedFileTabs: true
+    customFileTypes:
+      "source.json": [
+        "wpn"
+        "proj"
+        "faction"
+        "variant"
+        "ship"
+        "system"
+      ]
     disabledPackages: [
       "language-gfm"
+      "ide-cpp"
     ]
-    projectHome: "/home/jstaf/Documents/project"
+    projectHome: "/home/jstaf/Documents/projects"
     telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
@@ -14,11 +28,16 @@
     ]
   editor:
     fontFamily: "Fira Mono"
-    fontSize: 16
+    fontSize: 18
   "exception-reporting":
     userId: "be264c27-d8a0-4aed-bd5c-3a661396a218"
-  "git-diff":
-    showIconsInEditorGutter: true
+  "git-diff": {}
+  "gruvbox-plus-syntax":
+    variant: "No Dimmed Colors"
+  "java-import-wiz":
+    separateGroups: false
+  "one-dark-ui":
+    fontSize: 14
   "platformio-ide-terminal":
     ansiColors:
       normal:
@@ -43,8 +62,31 @@
       animationSpeed: 0
       fontFamily: "Fira Mono"
       fontSize: "16"
-      theme: "gruvbox"
+      theme: "pro"
     toggles:
       autoClose: true
+  "split-diff":
+    ignoreWhitespace: true
+  "tree-view":
+    hideIgnoredNames: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
+".c.source":
+  editor:
+    tabLength: 4
+".cpp.source":
+  editor:
+    tabLength: 4
+".html.jsp.text":
+  editor:
+    preferredLineLength: 120
+".java-properties.source":
+  editor:
+    preferredLineLength: 120
+".java.source":
+  editor:
+    preferredLineLength: 120
+".junit-test-report.text":
+  editor:
+    preferredLineLength: 120
