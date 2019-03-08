@@ -2,10 +2,12 @@
 
 install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
+	cp .gitignore ~
 	cp .Rprofile ~
 	vim +PlugInstall +qall!
 	git config --global color.ui auto
 	git config --global push.default simple
+	git config --global core.excludesfile '~/.gitignore'
 
 
 # some desktop-focused configs
