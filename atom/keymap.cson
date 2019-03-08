@@ -34,6 +34,7 @@
 '.platform-linux .platformio-ide-terminal .terminal, .platform-win32 .platformio-ide-terminal .terminal':
   'ctrl-shift-c': 'platformio-ide-terminal:copy'
   'ctrl-shift-v': 'platformio-ide-terminal:paste'
+  'ctrl-g': 'platformio-ide-terminal:fullscreen'
 '.platform-linux atom-workspace, .platform-win32 atom-workspace':
   'ctrl-1': 'platformio-ide-terminal:prev'
   'ctrl-2': 'platformio-ide-terminal:next'

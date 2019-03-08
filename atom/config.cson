@@ -1,5 +1,25 @@
 "*":
+  "atom-beautify":
+    c:
+      beautify_on_save: true
+      default_beautifier: "clang-format"
+    general:
+      _analyticsUserId: "6a764bf2-cd46-48d1-b2de-f2d51a8aed63"
+      showLoadingView: false
+    glsl:
+      beautify_on_save: true
+    go:
+      beautify_on_save: true
+      default_beautifier: "goimports"
+    python:
+      beautify_on_save: true
+      default_beautifier: "black"
+      sort_imports: true
+    yaml:
+      beautify_on_save: true
   "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnType: false
     "atom-ide-outline-view": {}
     use: {}
   build:
@@ -18,22 +38,39 @@
       ]
     disabledPackages: [
       "language-gfm"
-      "ide-cpp"
     ]
     projectHome: "/home/jstaf/Documents/projects"
     telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
-      "gruvbox-plus-syntax"
+      "firewatch-syntax"
     ]
   editor:
     fontFamily: "Fira Mono"
     fontSize: 18
+    softWrap: true
+    tabLength: 4
   "exception-reporting":
     userId: "be264c27-d8a0-4aed-bd5c-3a661396a218"
   "git-diff": {}
+  "go-plus":
+    config: {}
+    format: {}
+    panel:
+      displayMode: "closed"
+      focusOnFailure: false
+    skipCodeFormatCheck: true
+    test:
+      coverageDisplayMode: "gutter"
+      coverageHighlightMode: "disabled"
+      runTestsOnSave: false
   "gruvbox-plus-syntax":
     variant: "No Dimmed Colors"
+  "ide-go":
+    diagnosticsEnabled: true
+  "ide-java":
+    errors:
+      incompleteClasspathSeverity: "ignore"
   "java-import-wiz":
     separateGroups: false
   "one-dark-ui":
@@ -62,7 +99,7 @@
       animationSpeed: 0
       fontFamily: "Fira Mono"
       fontSize: "16"
-      theme: "pro"
+      theme: "one-dark"
     toggles:
       autoClose: true
   "split-diff":
@@ -74,7 +111,7 @@
     showOnStartup: false
 ".c.source":
   editor:
-    tabLength: 4
+    tabLength: 2
 ".cpp.source":
   editor:
     tabLength: 4
