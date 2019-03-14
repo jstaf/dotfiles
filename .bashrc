@@ -23,8 +23,16 @@ if [[ $(uname -a) =~ "Linux" ]]; then
     export PATH=$PATH:~/.local/bin:~/bin
 elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
+    alias md5sum=md5
+    alias sha256sum='shasum -a 256'
+    alias lsblk='diskutil list'
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+    
+    # use openssl for compiles otherwise compiles involving openssl-specific stuff will fail
+    export LDFLAGS="-L/usr/local/opt/openssl/lib:$LDFLAGS"
+    export CFLAGS="-I/usr/local/opt/openssl/include:$CFLAGS"
+    export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
 else
     # screams internally
     alias ls='gls --color=auto'
