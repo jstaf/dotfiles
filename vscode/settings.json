@@ -30,19 +30,23 @@
         120
     ],
     "workbench.iconTheme": "file-icons",
-    "vsicons.dontShowNewVersionMessage": true,
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
     "explorer.confirmDelete": false,
     "workbench.activityBar.visible": true,
     "window.zoomLevel": 1,
-    "files.insertFinalNewline": true,
     "files.associations": {
         "*.wpn": "json",
         "*.proj": "json",
         "*.ship": "json",
         "*.variant": "json",
         "*.faction": "json"
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/venv*/**": true
     },
     "todohighlight.include": [
         "**/*.js",
@@ -70,8 +74,26 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
     "todohighlight.isEnable": true,
-    "workbench.colorTheme": "Frontier (rainglow)",
+    "workbench.colorTheme": "Gruvbox Dark Soft",
     "java.saveActions.organizeImports": true,
     "go.installDependenciesWhenBuilding": false,
-    "java.autobuild.enabled": false
+    "java.autobuild.enabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "python.jediEnabled": false,
+    "window.titleBarStyle": "custom",
+    "files.insertFinalNewline": true,
+    "editor.fontSize": 16,
+    "editor.folding": false,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "go.useLanguageServer": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.factorypath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/*.pyc": true
+    },
+    "python.linting.flake8Enabled": true
 }
