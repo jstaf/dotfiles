@@ -7,6 +7,8 @@ set expandtab
 set smarttab
 set splitbelow
 set splitright
+
+" enable mouse support
 set mouse=a
 
 """""""""""""""""""""""""""""""""""""""
@@ -16,14 +18,16 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
+Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
 Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " colorscheme configs
 set background=dark
 let g:gruvbox_italic=0
-let g:gruvbox_contrast_dark='medium'
+let g:gruvbox_contrast_dark='soft'
 colorscheme gruvbox
 
 " enable airline, with server compatibility fixes
@@ -46,4 +50,8 @@ autocmd FileType make set noexpandtab
 
 " yaml formatting
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab indentkeys-=<:>
+
+" terraform formatting
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
