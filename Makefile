@@ -20,6 +20,9 @@ desktop:
 	mkdir -p ~/.atom
 	cp atom/*.cson ~/.atom
 
+	mkdir -p ~/.config/Code/User
+	cp vscode/*.json ~/.config/Code/User
+
 
 # install Vim-Plug
 ~/.vim/autoload/plug.vim:
