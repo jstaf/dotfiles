@@ -16,11 +16,12 @@ alias ecr-login='$(aws ecr get-login --no-include-email)'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
 ecr-ls-images() {
+    REPO=$(echo "$1" | sed 's/.\+.amazonaws.com\///g')
     MAX_ITEMS="$2"
     if [ -z "$MAX_ITEMS" ]; then
         MAX_ITEMS=10
     fi
-    aws ecr describe-images --repository "$1" --filter=tagStatus=TAGGED \
+    aws ecr describe-images --repository "$REPO" --filter=tagStatus=TAGGED \
         --query "reverse(sort_by(imageDetails,& imagePushedAt))[:"$MAX_ITEMS"]" \
         | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes) | .imagePushedAt |= strflocaltime("%Y-%m-%dT%H:%M"))'
 }
