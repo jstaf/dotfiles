@@ -11,6 +11,15 @@ alias ssh='ssh -X'
 alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
+# useful aliases/functions for ecr
+alias ecr-login='$(aws ecr get-login --no-include-email)'
+alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
+
+ecr-ls-images() {
+    aws ecr list-images --repository "$1" --filter=tagStatus=TAGGED | jq -r .imageIds[].imageTag
+}
+
+# bash prompt/appearance customization
 ps1_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
@@ -19,7 +28,7 @@ ps1_git_branch() {
 export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]$(ps1_git_branch)]\$ '
 export EDITOR=vim
 export TERM=xterm-256color
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/go/bin
+export PATH=$PATH:~/go/bin
 export GO111MODULE=auto
 
 # system-specific initialization
@@ -31,16 +40,8 @@ if [[ $(uname -a) =~ "Linux" ]]; then
     export ELECTRON_TRASH=gio  # atom bug
 elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
-    alias md5sum=md5
-    alias sha256sum='shasum -a 256'
-    alias lsblk='diskutil list'
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-
-    # use openssl for compiles otherwise compiles involving openssl-specific stuff will fail
-    export LDFLAGS="-L/usr/local/opt/openssl/lib:$LDFLAGS"
-    export CFLAGS="-I/usr/local/opt/openssl/include:$CFLAGS"
-    export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH"
 else
     # screams internally
     alias ls='gls --color=auto'
