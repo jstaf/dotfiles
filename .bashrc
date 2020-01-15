@@ -16,7 +16,13 @@ alias ecr-login='$(aws ecr get-login --no-include-email)'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
 ecr-ls-images() {
-    aws ecr list-images --repository "$1" --filter=tagStatus=TAGGED | jq -r .imageIds[].imageTag
+    MAX_ITEMS="$2"
+    if [ -z "$MAX_ITEMS" ]; then
+        MAX_ITEMS=10
+    fi
+    aws ecr describe-images --repository "$1" --filter=tagStatus=TAGGED \
+        --query "reverse(sort_by(imageDetails,& imagePushedAt))[:"$MAX_ITEMS"]" \
+        | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes))'
 }
 
 # bash prompt/appearance customization
