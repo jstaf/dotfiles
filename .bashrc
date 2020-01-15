@@ -22,7 +22,7 @@ ecr-ls-images() {
     fi
     aws ecr describe-images --repository "$1" --filter=tagStatus=TAGGED \
         --query "reverse(sort_by(imageDetails,& imagePushedAt))[:"$MAX_ITEMS"]" \
-        | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes))'
+        | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes) | .imagePushedAt |= strflocaltime("%Y-%m-%dT%H:%M"))'
 }
 
 # bash prompt/appearance customization
