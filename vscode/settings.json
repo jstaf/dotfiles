@@ -19,7 +19,6 @@
     "workbench.statusBar.visible": true,
     "workbench.colorTheme": "Gruvbox Dark Soft",
     "window.menuBarVisibility": "default",
-    "window.zoomLevel": 1,
     "window.titleBarStyle": "custom",
     "git.confirmSync": false,
     "git.enableSmartCommit": true,
@@ -27,6 +26,7 @@
         "*.wpn": "json",
         "*.proj": "json",
         "*.ship": "json",
+        "*.system": "json",
         "*.variant": "json",
         "*.faction": "json"
     },
@@ -36,7 +36,8 @@
         "**/.factorypath": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/*.pyc": true
+        "**/*.pyc": true,
+        "mount/": true
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,
@@ -58,7 +59,13 @@
     ],
     "todohighlight.keywordsPattern": "TODO|FIXME",
     "todohighlight.isEnable": true,
-    "C_Cpp.clang_format_style": "LLVM",
+    "C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 90}",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/usr/local/include/**",
+        "/usr/include/**",
+        "/usr/lib64/glib-2.0/include/**"
+    ],
     "go.buildOnSave": "off",
     "go.lintOnSave": "workspace",
     "go.liveErrors": {
@@ -80,5 +87,9 @@
     "markdown.preview.fontSize": 18,
     "atomKeymap.promptV3Features": true,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "mesonbuild.configureOnOpen": true,
+    "C_Cpp.default.intelliSenseMode": "gcc-x64"
 }
