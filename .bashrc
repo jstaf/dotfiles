@@ -12,7 +12,7 @@ alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
 # useful aliases/functions for ecr
-alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(aws configure get region).amazonaws.com'
+alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(python -c "import boto3; print(boto3.Session().region_name)").amazonaws.com'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
 ecr-ls-images() {
