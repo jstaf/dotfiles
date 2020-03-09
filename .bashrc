@@ -12,7 +12,7 @@ alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
 # useful aliases/functions for ecr
-alias ecr-login='$(aws ecr get-login --no-include-email)'
+alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(aws configure get region).amazonaws.com'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
 ecr-ls-images() {
@@ -35,8 +35,15 @@ ps1_git_branch() {
 export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]$(ps1_git_branch)]\$ '
 export EDITOR=vim
 export TERM=xterm-256color
+
+# golang
 export PATH=$PATH:~/go/bin
 export GO111MODULE=auto
+
+# nodejs
+NPM_PACKAGES=~/.npm-packages
+export PATH=$PATH:$NPM_PACKAGES/bin
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 # system-specific initialization
 if [[ $(uname -a) =~ "Linux" ]]; then
