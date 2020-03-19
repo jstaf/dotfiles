@@ -15,6 +15,7 @@ alias b64='base64 --decode; echo'
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(python -c "import boto3; print(boto3.Session().region_name)").amazonaws.com'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
+# usage: ecr-ls-images repo [number_of_images_to_list]
 ecr-ls-images() {
     REPO=$(echo "$1" | sed 's/.\+.amazonaws.com\///g')
     MAX_ITEMS="$2"
@@ -24,6 +25,14 @@ ecr-ls-images() {
     aws ecr describe-images --repository "$REPO" --filter=tagStatus=TAGGED \
         --query "reverse(sort_by(imageDetails,& imagePushedAt))[:"$MAX_ITEMS"]" \
         | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes) | .imagePushedAt |= strflocaltime("%Y-%m-%dT%H:%M"))'
+}
+
+# usage: ecr-tag-image repo:tag new_tag
+ecr-tag-image() {
+    REPO=$(echo "$1" | sed 's/.\+.amazonaws.com\///g' | sed 's/:.\+//g')
+    TAG=$(echo "$1" | sed 's/.\+://g')
+    MANIFEST=$(aws ecr batch-get-image --repository-name=$REPO --image-ids=imageTag=$TAG --query 'images[].imageManifest' --output text)
+    aws ecr put-image --repository-name=$REPO --image-tag=$2 --image-manifest "$MANIFEST"
 }
 
 # bash prompt/appearance customization
