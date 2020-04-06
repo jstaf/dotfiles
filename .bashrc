@@ -35,6 +35,11 @@ ecr-tag-image() {
     aws ecr put-image --repository-name=$REPO --image-tag=$2 --image-manifest "$MANIFEST"
 }
 
+# usage: kms-decrypt ciphertext
+kms-decrypt() {
+    aws kms decrypt --ciphertext-blob fileb://<(echo -n "$1" | base64 -d) --query Plaintext --output text | base64 -d; echo
+}
+
 # bash prompt/appearance customization
 ps1_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
