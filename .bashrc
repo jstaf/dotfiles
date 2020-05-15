@@ -5,9 +5,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# do not use swapfiles to avoid stalling if a network filesystem is unresponsive
-alias vim='vim -n'
-alias ssh='ssh -X'
 alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
@@ -59,6 +56,13 @@ NPM_PACKAGES=~/.npm-packages
 export PATH=$PATH:$NPM_PACKAGES/bin
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
+# ansible
+export ANSIBLE_NOCOWS=True
+export ANSIBLE_COW_SELECTION=random
+export ANSIBLE_STDOUT_CALLBACK=unixy
+export ANSIBLE_HOST_KEY_CHECKING=False
+export ANSIBLE_RETRY_FILES_ENABLED=False
+
 # system-specific initialization
 if [[ $(uname -a) =~ "Linux" ]]; then
     # linux
@@ -66,6 +70,11 @@ if [[ $(uname -a) =~ "Linux" ]]; then
     alias ls='ls --color=auto'
     export PATH=$PATH:~/.local/bin:~/bin
     export ELECTRON_TRASH=gio  # atom bug
+    if [[ $(uname -a) =~ "Ubuntu" ]]; then
+        # why are you like this ubuntu
+        source /usr/share/bash-completion/bash_completion
+        [ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
+    fi
 elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
@@ -80,7 +89,13 @@ fi
 
 # for tilix vte compatibility
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    if [ -f /etc/profile.d/vte.sh ]; then
+        # fedora/centos
         source /etc/profile.d/vte.sh
+    else
+        # ubuntu derivatives
+        source /etc/profile.d/vte-2.91.sh
+    fi
 fi
 
 # load system-specific aliases

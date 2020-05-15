@@ -5,7 +5,6 @@ install: ~/.vim/autoload/plug.vim
 	cp .bash_profile ~
 	cp .gitignore ~
 	cp .Rprofile ~
-	cp .ansible.cfg ~
 	vim +PlugInstall +qall!
 	git config --global color.ui auto
 	git config --global push.default simple
