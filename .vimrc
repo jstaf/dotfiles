@@ -7,6 +7,7 @@ set expandtab
 set smarttab
 set splitbelow
 set splitright
+set noswapfile
 
 " enable mouse support
 set mouse=a
@@ -18,7 +19,6 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'davidhalter/jedi-vim' " python autocomplete
 Plug 'ervandew/supertab'	" enable tab autocomplete
 Plug 'puppetlabs/puppet-syntax-vim'
 Plug 'hashivim/vim-terraform'

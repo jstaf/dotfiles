@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    source /etc/bashrc
 fi
 
 alias ll='ls -l'
@@ -62,6 +62,7 @@ export ANSIBLE_COW_SELECTION=random
 export ANSIBLE_STDOUT_CALLBACK=unixy
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_RETRY_FILES_ENABLED=False
+export ANSIBLE_PIPELINING=True
 
 # system-specific initialization
 if [[ $(uname -a) =~ "Linux" ]]; then
