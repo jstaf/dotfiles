@@ -20,7 +20,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
-Plug 'puppetlabs/puppetsyntax-vim'
+Plug 'rodjek/vim-puppet'
 Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 call plug#end()
