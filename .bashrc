@@ -37,6 +37,8 @@ kms-decrypt() {
     aws kms decrypt --ciphertext-blob fileb://<(echo -n "$1" | base64 -d) --query Plaintext --output text | base64 -d; echo
 }
 
+alias bw-unlock='export BW_SESSION=$(bw unlock --raw)'
+
 # bash prompt/appearance customization
 ps1_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
@@ -82,10 +84,9 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 else
     # screams internally
-    alias ls='gls --color=auto'
+    export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+    alias ls='ls --color'
     alias vi='vim'
-    alias wget='wget --no-check-certificate'
-    export PS1='[\u@\h \W]\$ '
 fi
 
 # for tilix vte compatibility
