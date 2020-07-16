@@ -19,8 +19,9 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
-Plug 'ervandew/supertab'	" enable tab autocomplete
-Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'ervandew/supertab'
+Plug 'puppetlabs/puppetsyntax-vim'
+Plug 'pearofducks/ansible-vim'
 Plug 'hashivim/vim-terraform'
 call plug#end()
 
