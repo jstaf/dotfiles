@@ -8,6 +8,15 @@ fi
 alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
+# display a csv file nicely
+csv() {
+    if [ ! -z "$1" ]; then
+        cat $1 | column -t -s, | less -S -N
+    else
+        echo "Usage: csv <filename.csv>"
+    fi
+}
+
 # useful aliases/functions for ecr
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(python -c "import boto3; print(boto3.Session().region_name)").amazonaws.com'
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'

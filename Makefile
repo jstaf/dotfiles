@@ -8,6 +8,7 @@ install: ~/.vim/autoload/plug.vim
 	vim +PlugInstall +qall!
 	git config --global color.ui auto
 	git config --global push.default simple
+	git config --global pull.ff only
 	git config --global core.excludesfile '~/.gitignore'
 
 
