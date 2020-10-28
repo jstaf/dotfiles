@@ -1,10 +1,28 @@
 # .bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-    source /etc/bashrc
-fi
+# bash prompt/appearance customization
+ps1_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+}
 
+# shell-specific initialization
+if [ -n "$ZSH_VERSION" ]; then
+    setopt PROMPT_SUBST
+    export PS1='[%B%F{yellow}%n@%m%f %F{red}%1~%f%b$(ps1_git_branch)]%# '
+    autoload -Uz compinit
+    compinit -i
+elif [ -n "$BASH_VERSION" ]; then
+    # Source global definitions
+    if [ -f /etc/bashrc ]; then
+        source /etc/bashrc
+    fi
+    export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]$(ps1_git_branch)]\$ '
+else
+    # probably sh
+    export PS1='[\u@\h \W]\$ '
+fi
+export EDITOR=vim
+export TERM=xterm-256color
 alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
@@ -48,16 +66,6 @@ kms-decrypt() {
 
 alias bw-unlock='export BW_SESSION=$(bw unlock --raw)'
 
-# bash prompt/appearance customization
-ps1_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
-}
-
-# yellow-red centos ps1
-export PS1='[\[\033[01;033m\]\u@\h \[\033[01;031m\]\W\[\033[00m\]$(ps1_git_branch)]\$ '
-export EDITOR=vim
-export TERM=xterm-256color
-
 # golang
 export PATH=$PATH:~/go/bin
 export GO111MODULE=auto
@@ -81,7 +89,6 @@ if [[ $(uname -a) =~ "Linux" ]]; then
     eval `dircolors`
     alias ls='ls --color=auto'
     export PATH=$PATH:~/.local/bin:~/bin
-    export ELECTRON_TRASH=gio  # atom bug
     if [[ $(uname -a) =~ "Ubuntu" ]]; then
         # why are you like this ubuntu
         source /usr/share/bash-completion/bash_completion
@@ -91,6 +98,12 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+    export PATH="~/bin:~/homebrew/bin:$PATH"
+    alias sha256sum='shasum -a 256'
+    alias md5sum=md5
+    if [ -f ~/bin/kubectl ]; then
+        source <(kubectl completion zsh)
+    fi
 else
     # screams internally
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd

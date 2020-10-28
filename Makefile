@@ -3,6 +3,7 @@
 install: ~/.vim/autoload/plug.vim
 	cp .*rc ~
 	cp .bash_profile ~
+	ln -sf ~/.bashrc ~/.zshrc
 	cp .gitignore ~
 	cp .Rprofile ~
 	vim +PlugInstall +qall!
