@@ -1,6 +1,8 @@
 # .bashrc
 
 # bash prompt/appearance customization
+
+# Helper func to display the current git branch
 ps1_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
@@ -26,7 +28,7 @@ export TERM=xterm-256color
 alias ll='ls -l'
 alias b64='base64 --decode; echo'
 
-# display a csv file nicely
+# Display a csv file nicely
 csv() {
     if [ ! -z "$1" ]; then
         cat $1 | column -t -s, | less -S -N
@@ -35,10 +37,12 @@ csv() {
     fi
 }
 
-# useful aliases/functions for ecr
+# Login to AWS ECR
 alias ecr-login='aws ecr get-login-password | docker login --username AWS --password-stdin $(aws sts get-caller-identity | jq -r .Account).dkr.ecr.$(python -c "import boto3; print(boto3.Session().region_name)").amazonaws.com'
+# ls available ECR repos on the CLI
 alias ecr-ls-repos='aws ecr describe-repositories | jq -r .repositories[].repositoryUri'
 
+# Show images on ECR
 # usage: ecr-ls-images repo [number_of_images_to_list]
 ecr-ls-images() {
     REPO=$(echo "$1" | sed 's/.\+.amazonaws.com\///g')
@@ -51,6 +55,7 @@ ecr-ls-images() {
         | jq 'map(del(.registryId, .imageDigest, .repositoryName, .imageSizeInBytes) | .imagePushedAt |= strflocaltime("%Y-%m-%dT%H:%M"))'
 }
 
+# Tag an image on ECR without pulling it.
 # usage: ecr-tag-image repo:tag new_tag
 ecr-tag-image() {
     REPO=$(echo "$1" | sed 's/.\+.amazonaws.com\///g' | sed 's/:.\+//g')
@@ -59,9 +64,16 @@ ecr-tag-image() {
     aws ecr put-image --repository-name=$REPO --image-tag=$2 --image-manifest "$MANIFEST"
 }
 
+# Decrypt an AWS KMS encrypted secret
 # usage: kms-decrypt ciphertext
 kms-decrypt() {
     aws kms decrypt --ciphertext-blob fileb://<(echo -n "$1" | base64 -d) --query Plaintext --output text | base64 -d; echo
+}
+
+# Encrypt a string via Ansible Vault
+# usage: av-encrypt string-to-encrypt
+av-encrypt() {
+    echo -n "$1" | ansible-vault encrypt_string
 }
 
 alias bw-unlock='export BW_SESSION=$(bw unlock --raw)'
@@ -82,6 +94,7 @@ export ANSIBLE_STDOUT_CALLBACK=unixy
 export ANSIBLE_HOST_KEY_CHECKING=False
 export ANSIBLE_RETRY_FILES_ENABLED=False
 export ANSIBLE_PIPELINING=True
+export ANSIBLE_TRANSFORM_INVALID_GROUP_CHARS=ignore
 
 # system-specific initialization
 if [[ $(uname -a) =~ "Linux" ]]; then
@@ -99,6 +112,7 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
     export PATH="~/bin:~/homebrew/bin:$PATH"
+    export GREP_OPTIONS='--color=auto'
     alias sha256sum='shasum -a 256'
     alias md5sum=md5
     if [ -f ~/bin/kubectl ]; then
