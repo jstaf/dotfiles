@@ -96,6 +96,9 @@ export ANSIBLE_RETRY_FILES_ENABLED=False
 export ANSIBLE_PIPELINING=True
 export ANSIBLE_TRANSFORM_INVALID_GROUP_CHARS=ignore
 
+# vagrant
+export VAGRANT_DISABLE_STRICT_DEPENDENCY_ENFORCEMENT=1
+
 # system-specific initialization
 if [[ $(uname -a) =~ "Linux" ]]; then
     # linux
