@@ -4,7 +4,9 @@
 
 # Helper func to display the current git branch
 ps1_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
+    fi
 }
 
 # shell-specific initialization
@@ -114,9 +116,10 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-    export PATH="~/bin:~/homebrew/bin:$PATH"
+    export PATH="$HOME/bin:$HOME/homebrew/bin:$PATH"
     export GREP_OPTIONS='--color=auto'
     alias sha256sum='shasum -a 256'
+    alias sha512sum='shasum -a 512'
     alias md5sum=md5
     if [ -f ~/bin/kubectl ]; then
         source <(kubectl completion zsh)
