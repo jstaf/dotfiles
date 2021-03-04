@@ -20,6 +20,9 @@ set mouse=a
 " terminal config
 set termwinsize=14x0
 
+" backspace isn't set correctly on bsd variants
+set backspace=indent,eol,start
+
 """""""""""""""""""""""""""""""""""""""
 " vim plug plugins
 call plug#begin('~/.vim/plugged')
@@ -27,9 +30,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+Plug 'machakann/vim-highlightedyank'
+Plug 'farmergreg/vim-lastplace'
 Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ervandew/supertab'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rodjek/vim-puppet'
