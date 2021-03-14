@@ -1,7 +1,5 @@
 # .bashrc
 
-# bash prompt/appearance customization
-
 # Helper func to display the current git branch
 ps1_git_branch() {
     if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
@@ -102,17 +100,18 @@ export ANSIBLE_TRANSFORM_INVALID_GROUP_CHARS=ignore
 export VAGRANT_DISABLE_STRICT_DEPENDENCY_ENFORCEMENT=1
 
 # system-specific initialization
-if [[ $(uname -a) =~ "Linux" ]]; then
+UNAME="$(uname -a)"
+if [[ "$UNAME" =~ "Linux" ]]; then
     # linux
     eval `dircolors`
     alias ls='ls --color=auto'
     export PATH=$PATH:~/.local/bin:~/bin
-    if [[ $(uname -a) =~ "Ubuntu" ]]; then
+    if [[ "$UNAME" =~ "Ubuntu" ]]; then
         # why are you like this ubuntu
         source /usr/share/bash-completion/bash_completion
         [ -f /usr/bin/kubectl ] && source <(kubectl completion bash)
     fi
-elif [[ $(uname -a) =~ "Darwin" ]]; then
+elif [[ "$UNAME" =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
@@ -121,9 +120,7 @@ elif [[ $(uname -a) =~ "Darwin" ]]; then
     alias sha256sum='shasum -a 256'
     alias sha512sum='shasum -a 512'
     alias md5sum=md5
-    if [ -f ~/bin/kubectl ]; then
-        source <(kubectl completion zsh)
-    fi
+    [ -f ~/bin/kubectl ] && source <(kubectl completion zsh)
 else
     # screams internally
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
@@ -143,7 +140,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # load system-specific aliases
-if [[ -r ~/.bash_site ]]; then
+if [ -r ~/.bash_site ]; then
     source ~/.bash_site
 fi
 
