@@ -6,6 +6,8 @@ install: ~/.vim/autoload/plug.vim
 	ln -sf ~/.bashrc ~/.zshrc
 	cp .gitignore ~
 	cp .Rprofile ~
+	mkdir -p ~/.config
+	cp flake8 ~/.config/
 	vim +PlugInstall +qall!
 	git config --global color.ui auto
 	git config --global push.default simple

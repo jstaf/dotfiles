@@ -79,11 +79,11 @@ av-encrypt() {
 alias bw-unlock='export BW_SESSION=$(bw unlock --raw)'
 
 # golang
-export PATH=$PATH:~/go/bin
+export PATH="$PATH:$HOME/go/bin"
 export GO111MODULE=auto
 
 # nodejs
-NPM_PACKAGES=~/.npm-packages
+NPM_PACKAGES="$HOME/.npm-packages"
 export PATH=$PATH:$NPM_PACKAGES/bin
 export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
@@ -115,12 +115,15 @@ elif [[ "$UNAME" =~ "Darwin" ]]; then
     # mac
     export CLICOLOR=1
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+    # tilde expansion is borked in zsh
     export PATH="$HOME/bin:$HOME/homebrew/bin:$PATH"
     export GREP_OPTIONS='--color=auto'
     alias sha256sum='shasum -a 256'
     alias sha512sum='shasum -a 512'
     alias md5sum=md5
-    [ -f ~/bin/kubectl ] && source <(kubectl completion zsh)
+    if [ -f "$HOME/bin/kubectl" ]; then
+        source <(kubectl completion zsh)
+    fi
 else
     # screams internally
     export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
@@ -140,7 +143,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 # load system-specific aliases
-if [ -r ~/.bash_site ]; then
-    source ~/.bash_site
+if [[ -r "$HOME/.bash_site" ]]; then
+    source "$HOME/.bash_site"
 fi
 
